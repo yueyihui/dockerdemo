@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+  a:
+    build:
+      context: ./ms_a
+      dockerfile: Dockerfile
+    image: a:1.0
+    container_name: container_a
+    depends_on:
+      - b
+    privileged: true
+    ipc: host
+    network_mode: "host"
+    ulimits:
+      core: -1
+
+  b:
+    build:
+      context: ./ms_b
+      dockerfile: Dockerfile
+    image: b:1.0
+    container_name: container_b
+    depends_on:
+      - c
+    privileged: true
+    ipc: host
+    network_mode: "host"
+    ulimits:
+      core: -1
+
+  c:
+    build:
+      context: ./ms_c
+      dockerfile: Dockerfile
+    image: c:1.0
+    container_name: container_c
+    depends_on:
+      - d
+    privileged: true
+    ipc: host
+    network_mode: "host"
+    ulimits:
+      core: -1
+
+  d:
+    build:
+      context: ./ms_d
+      dockerfile: Dockerfile
+    image: d:1.0
+    container_name: container_d
+    privileged: true
+    ipc: host
+    network_mode: "host"
+    ulimits:
+      core: -1
